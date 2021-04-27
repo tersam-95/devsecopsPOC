@@ -46,20 +46,15 @@ jobs:
            name: Depcheck  
            path: ${{github.workspace}}/reports 
            
-      - name: Set up projects
-        uses: security-code-scan/security-code-scan-add-action@v1.1
-
-      - name: Build
-        run: |
-          dotnet restore
-          dotnet build
-        
-      - name: Convert sarif for uploading to GitHub
-        uses: security-code-scan/security-code-scan-results-action@v1.3
-        
-      - name: Upload sarif	
-        uses: github/codeql-action/upload-sarif@v1
-           
+      - name: AppThreat SAST
+      - uses: AppThreat/sast-scan-action@master
+        with:
+         type: "python"
+      - name: Upload SAST Report
+      - uses: actions/upload-artifact@v1
+        with:
+         name: reports
+         path: reports
 
  
 
