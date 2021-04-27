@@ -27,19 +27,33 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
         
+  # This workflow contains a single job called "build"
+  security:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Dependency Check
-        # You may pin to the exact commit or the version.
-        # uses: dependency-check/Dependency-Check_Action@6451ab879ac4930a218fa5bd7393a04a3836b4a7
-        uses: dependency-check/Dependency-Check_Action@1.0.0
+      - uses: dependency-check/Dependency-Check_Action@1.0.0
         with:
-          project: 'test'
-          path: '.'
-          format: 'HTML'    
+            project: 'test'
+            path: '.'
+            format: 'HTML' 
+      # Runs a single command using the runners shell
       - name: Upload Test results
-        uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@master
+        with:
+            project: 'test'
+            path: '.'
+            format: 'HTML'    
+      - name: Upload Test results
+      - uses: actions/upload-artifact@master
         with:
            name: Depcheck report
-           path: ${{github.workspace}}/reports 
+           path: ${{github.workspace}}/reports
+    
+ 
   
   
         
