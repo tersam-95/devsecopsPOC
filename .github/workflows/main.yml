@@ -26,7 +26,20 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-    
-
-
+        
+      - name: Dependency Check
+        # You may pin to the exact commit or the version.
+        # uses: dependency-check/Dependency-Check_Action@6451ab879ac4930a218fa5bd7393a04a3836b4a7
+        uses: dependency-check/Dependency-Check_Action@1.0.0
+        with:
+          project: 'test'
+          path: '.'
+          format: 'HTML'    
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports 
+  
+  
         
