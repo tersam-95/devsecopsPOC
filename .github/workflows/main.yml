@@ -27,7 +27,6 @@ jobs:
         run: echo Hello, world!
   
   security:
-
       runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
       steps:     
@@ -47,14 +46,14 @@ jobs:
            path: ${{github.workspace}}/reports 
            
       - name: AppThreat SAST
-      - uses: AppThreat/sast-scan-action@master
+        uses: AppThreat/sast-scan-action@master
         with:
          type: "python"
       - name: Upload SAST Report
-      - uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v1
         with:
-         name: reports
-         path: reports
+          name: sast
+          path: ${{github.workspace}}/reports 
 
  
 
