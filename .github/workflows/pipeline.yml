@@ -55,16 +55,3 @@ jobs:
         with:
             name: sast-scan-reports
             path: ${{github.workspace}}/reports 
-            
-      - name: CodeQL-Build
-        uses: actions/checkout@v2
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
